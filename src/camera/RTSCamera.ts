@@ -24,10 +24,10 @@ export class RTSCamera {
             // speed for rotation
             rotationSpeed: 0.02,
             // boundaries for x and z
-            minX: -30,
-            maxX: 30,
-            minZ: -30,
-            maxZ: 30,
+            minX: -5,
+            maxX: 55,
+            minZ: -5,
+            maxZ: 55,
 
             // mousewheel properties
             // similar to targetPosition, targetZoom contains the target value for the zoom
