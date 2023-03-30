@@ -1,9 +1,9 @@
-import { Camera, Tools, UniversalCamera, Vector3 } from "@babylonjs/core";
+import { Camera, Scene, Tools, UniversalCamera, Vector3 } from "@babylonjs/core";
 
 export class RTSCamera {
-    public camera;
+    public camera: UniversalCamera;
 
-    constructor(canvas, scene) {
+    constructor(canvas: HTMLCanvasElement, scene: Scene) {
         this.camera = new UniversalCamera("camera1", new Vector3(5, 5, -5), scene);
         // This targets the camera to scene origin
         this.camera.setTarget(Vector3.Zero());
