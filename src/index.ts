@@ -17,8 +17,6 @@ const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
 const engine = new Engine(canvas);
 // Create our first scene.
 var scene = new Scene(engine);
-// This creates and positions a free camera (non-mesh)
-var camera = new RTSCamera(canvas, scene);
 
 // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
 var light = new HemisphericLight("light1", new Vector3(0, 1, 0), scene);
@@ -26,14 +24,19 @@ var light = new HemisphericLight("light1", new Vector3(0, 1, 0), scene);
 // Default intensity is 1. Let's dim the light a small amount
 light.intensity = 0.7;
 
+const size = { xmin: 0, zmin: 0, xmax: 50, zmax: 50 };
+
 const grid = {
-    'h' : 50,
-    'w' : 50
+    'h' : size.zmax,
+    'w' : size.xmax
 };
+
+// This creates and positions a free camera (non-mesh)
+var camera = new RTSCamera(canvas, scene, size);
 
 const world = Array2d.getRandomlySeeded2d(grid.h, grid.w, 0, 4);
 
-const tiledGround = MeshBuilder.CreateTiledGround("Tiled Ground", { xmin: 0, zmin: 0, xmax: 50, zmax: 50, subdivisions: grid });
+const tiledGround = MeshBuilder.CreateTiledGround("Tiled Ground", { xmin: size.xmin, zmin: size.zmin, xmax: size.xmax, zmax: size.zmax, subdivisions: grid });
 
 const treeMaterial = new StandardMaterial("trees");
 treeMaterial.diffuseTexture = new Texture("textures/trees.png");

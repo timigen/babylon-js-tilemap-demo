@@ -3,7 +3,7 @@ import { Camera, Scene, Tools, UniversalCamera, Vector3 } from "@babylonjs/core"
 export class RTSCamera {
     public camera: UniversalCamera;
 
-    constructor(canvas: HTMLCanvasElement, scene: Scene) {
+    constructor(canvas: HTMLCanvasElement, scene: Scene, opts) {
         this.camera = new UniversalCamera("camera1", new Vector3(5, 5, -5), scene);
         // This targets the camera to scene origin
         this.camera.setTarget(Vector3.Zero());
@@ -24,10 +24,10 @@ export class RTSCamera {
             // speed for rotation
             rotationSpeed: 0.02,
             // boundaries for x and z
-            minX: -5,
-            maxX: 55,
-            minZ: -5,
-            maxZ: 55,
+            minX: opts.xmin - 3,
+            maxX: opts.xmax + 3,
+            minZ: opts.zmin - 3,
+            maxZ: opts.zmax + 3,
 
             // mousewheel properties
             // similar to targetPosition, targetZoom contains the target value for the zoom
